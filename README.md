@@ -20,7 +20,7 @@ Limitations & Notes
 * Will not work on boards with Captcha-per-post enabled.
 * [8chan's DNSBL](https://8ch.net/dnsbls_bypass.php) will invisibly prevent posts from getting through if it crops up, the program doesn't check for it yet so please ensure you have filled it every 50-75 or so posts.
 * Do not post from the same IP Address 8chanDumper is running from, otherwise flood detection will mess both your posts and the script up.
-* Beware of very large filesizes, at the moment 8chanDumper uses 8chan's multi-uploader to blindly upload as many as files possible per post, if the total filesize exceeds the current filesize limit on 8chan the post will not get through.
+* Beware of very large filesizes, at the moment 8chanDumper uses 8chan's multi-uploader to blindly upload as many files as possible per post, if the total filesize exceeds the current filesize limit on 8chan the post will not get through.
 * Irresponsible use of this script is likely to get you banned. Some sites/boards may not want you dumping. Act accordingly.
 
 
