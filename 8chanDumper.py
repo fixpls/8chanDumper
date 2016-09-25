@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# If you encounter any problems please make an issue on  or make a new thread on /test/
+# If you encounter any problems please make an issue on https://github.com/fixpls/8chanDumper/issues/new or make a new thread on /test/
 
 import requests, time, os, sys, math, argparse
 from os import listdir
