@@ -3,7 +3,7 @@
 
 A directory dumper for 8chan ([8ch.net](https://8ch.net)).
 
-Provide a directory, board and thread and 8chanDumper will post all files from the directory alphabetically up to 5 at a time using 8chan's multi-upload feature.
+Provide a directory, board and thread and 8chanDumper will post all files from the directory alphabetically up to 5 at a time using 8chan's multi-upload feature (adjusts depending on website/board limits and user preferences).
 
 
 Requirements
