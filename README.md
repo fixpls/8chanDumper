@@ -9,7 +9,7 @@ Provide a directory, board and thread and 8chanDumper will post all files from t
 Requirements
 --------------------
 * Python 3
-* Requests (https://github.com/kennethreitz/requests) and RequestsToolBelt (https://pypi.python.org/pypi/requests-toolbelt)
+* Requests (https://github.com/kennethreitz/requests) and Requests-ToolBelt (https://pypi.python.org/pypi/requests-toolbelt)
 
 
 Limitations & Notes
