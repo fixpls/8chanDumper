@@ -34,15 +34,15 @@ current_file = 0
 
 
 def file_upload_monitor(monitor):
-	sys.stdout.write("\r     " + str(monitor.bytes_read) + " out of " + str(monitor.len) + " Bytes Uploaded... ")
+	sys.stdout.write("\r     {0} out of {1} Bytes Uploaded... ".format(monitor.bytes_read, monitor.len))
 	sys.stdout.flush
 
 # Get a sorted list of filenames
 filenames = [f for f in listdir(DIRECTORY) if isfile(join(DIRECTORY, f)) and f.endswith(ALLOWED_FILE_TYPES)]
 filenames.sort()
 
-print("\nDumping from directory \"" + DIRECTORY + "\" to https://8ch.net/" + BOARD + "/res/" + THREAD + ".html")
-print("Files to upload: " + str(len(filenames)) + ", Posts to make: " + str(math.ceil(len(filenames) / 5)) + "\n")
+print("\nDumping from directory \"{0}\" to https://8ch.net/{1}/res/{2}.html".format(DIRECTORY, BOARD, THREAD))
+print("Files to upload: {0}, Posts to make: {1}\n".format(len(filenames), math.ceil(len(filenames) / 5)))
 
 while current_file < len(filenames):
 	# Collect up to 5 filenames to post
@@ -61,7 +61,7 @@ while current_file < len(filenames):
 	        ("email", EMAIL)]
 	for index, filename in enumerate(filenames_to_post):
 		filenumber = str(index + 1) if index != 0 else ""
-		data.append(("file" + filenumber, (filename, open(join(DIRECTORY, filename), "rb"))))
+		data.append(("file{0}".format(filenumber), (filename, open(join(DIRECTORY, filename), "rb"))))
 
 	m = MultipartEncoderMonitor(MultipartEncoder(data), file_upload_monitor)
 
@@ -81,4 +81,4 @@ while current_file < len(filenames):
 		time.sleep(1)
 		print(str(x + 1) + "... ", end="", flush=True)
 	files_left = len(filenames) - current_file
-	print("Current Iteration: " + str(current_file) + ", Files left: " + str(files_left) + " Posts left: " + str(math.ceil(files_left / 5)))
+	print("Current Iteration: {0}, Files left: {1} Posts left: {2}".format(current_file, files_left, math.ceil(files_left / 5)))
