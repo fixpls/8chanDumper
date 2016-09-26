@@ -8,6 +8,8 @@ from os import listdir
 from os.path import isfile, join
 from requests_toolbelt import MultipartEncoder, MultipartEncoderMonitor
 
+import DumpHelper
+
 parser = argparse.ArgumentParser(description="Directory dump to 8chan with multiple-file posts")
 
 parser.add_argument('directory', action="store", type=str, help="Path to the directory with the files you wish to dump")
@@ -20,6 +22,11 @@ if results.thread == None:
     print(results)
     exit()
 
+board_settings = DumpHelper.BoardSettings(results.board)
+if board_settings.captcha_enabled:
+	print("/{0}/ has captcha-per-post enabled, cannot post!".format(results.board))
+	exit()
+
 DIRECTORY = results.directory # e.g. "/home/test/pictures"
 BOARD = results.board # e.g. "test"
 THREAD = str(results.thread) # e.g. "34429"
@@ -28,7 +35,7 @@ EMAIL = ""
 NAME = ""
 HIDE_FLAG = "on"
 POST_WAIT = 8
-ALLOWED_FILE_TYPES = (".jpg", ".jpeg", ".gif", ".png", ".webm", ".mp4", ".swf", ".pdf")
+ALLOWED_FILE_TYPES = tuple(board_settings.allowed_extensions)
 
 current_file = 0
 
@@ -41,13 +48,15 @@ def file_upload_monitor(monitor):
 filenames = [f for f in listdir(DIRECTORY) if isfile(join(DIRECTORY, f)) and f.endswith(ALLOWED_FILE_TYPES)]
 filenames.sort()
 
-print("\nDumping from directory \"{0}\" to https://8ch.net/{1}/res/{2}.html".format(DIRECTORY, BOARD, THREAD))
-print("Files to upload: {0}, Posts to make: {1}\n".format(len(filenames), math.ceil(len(filenames) / 5)))
+print("\nDirectory: \"{0}\", Board: /{1}/, Thread: {2}".format(DIRECTORY, BOARD, THREAD))
+print("Allowed extensions: {0} (files that are not allowed have been automatically ignored)".format(', '.join(board_settings.allowed_extensions)))
+print("Max files per post: {0}, Files to upload: {1}, Posts to make: {2}\n".format(board_settings.max_files, len(filenames), math.ceil(len(filenames) / board_settings.max_files)))
+print("\nBeginning dump from directory \"{0}\" to https://8ch.net/{1}/res/{2}.html\n".format(DIRECTORY, BOARD, THREAD))
 
 while current_file < len(filenames):
-	# Collect up to 5 filenames to post
-	filenames_to_post = filenames[current_file:current_file+5]
-	current_file += 5
+	# Collect filenames to post
+	filenames_to_post = filenames[current_file:current_file+board_settings.max_files]
+	current_file += board_settings.max_files
 
 	# Build post:
 	data = [("board", BOARD),
@@ -81,4 +90,4 @@ while current_file < len(filenames):
 		time.sleep(1)
 		print(str(x + 1) + "... ", end="", flush=True)
 	files_left = len(filenames) - current_file
-	print("Current Iteration: {0}, Files left: {1} Posts left: {2}".format(current_file, files_left, math.ceil(files_left / 5)))
+	print("Current Iteration: {0}, Files left: {1} Posts left: {2}".format(current_file, files_left, math.ceil(files_left / board_settings.max_files)))
