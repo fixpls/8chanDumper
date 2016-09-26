@@ -15,6 +15,7 @@ parser = argparse.ArgumentParser(description="Directory dump to 8chan with multi
 parser.add_argument('directory', action="store", type=str, help="Path to the directory with the files you wish to dump")
 parser.add_argument('board', action="store", type=str, help="8chan board you wish to post to (e.g. for /test/ put test)")
 parser.add_argument('thread', action="store", type=int, help="Thread number to post to (e.g. for https://8ch.net/test/res/34429.html put 34429)")
+parser.add_argument('-v', '--version', action='version', version='%(prog)s 2016.09.26')
 parser.add_argument('-s', '--subject', action='store', type=str, default="", dest='subject', help="Set the Subject to use for each post")
 parser.add_argument('-e', '--email', action='store', type=str, default="", dest='email', help="Set the Email to use for each post")
 parser.add_argument('-n', '--name', action='store', type=str, default="", dest='name', help="Set the Name to use for each post")
@@ -27,7 +28,6 @@ parser.add_argument('-u', '--useragent', action='store', type=str, default="", d
 parser.add_argument('-W', '--website', action='store', type=str, default="https://8ch.net", dest='website', help="Set which website to use (by default uses \"https://8ch.net\")")
 parser.add_argument('-m', '--maxfiles', action='store', type=int, default=9999, dest='max_files', help="Set how many files to post per post (limited by however many the board allows)")
 parser.add_argument('-r', '--resume', action='store', type=int, default=0, dest='resume', help="Resume from a specific upload position, start = 0 (a value of \"0\" will start uploading from the 1st file in the sorted list, \"1\" from the 2nd and so on)")
-parser.add_argument('-v', '--version', action='version', version='%(prog)s 2016.09.26')
 
 results = parser.parse_args()
 

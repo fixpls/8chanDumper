@@ -39,6 +39,7 @@ See `python 8chanDumper -h` for details:
     
     optional arguments:
       -h, --help                            show this help message and exit
+      -v, --version                         show program's version number and exit
       -s SUBJECT, --subject SUBJECT         Set the Subject to use for each post
       -e EMAIL, --email EMAIL               Set the Email to use for each post
       -n NAME, --name NAME                  Set the Name to use for each post
