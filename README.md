@@ -63,7 +63,7 @@ See `python 8chanDumper -h` for details:
                                             however many the board allows)
       -r RESUME, --resume RESUME            Resume from a specific upload position, start = 0 (a
                                             value of "0" will start uploading from the 1st file in
-                                            the sorted list, "1" from the 2nd and so on
+                                            the sorted list, "1" from the 2nd and so on)
 
 If you find a bug please make a thread on [/test/](https://8ch.net/test) detailing it and I'll probably notice it.
 

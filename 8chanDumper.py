@@ -26,7 +26,7 @@ parser.add_argument('-w', '--wait', action='store', type=int, default=8, dest='w
 parser.add_argument('-u', '--useragent', action='store', type=str, default="", dest='user_agent', help="Set the User Agent to use with the website")
 parser.add_argument('-W', '--website', action='store', type=str, default="https://8ch.net", dest='website', help="Set which website to use (by default uses \"https://8ch.net\")")
 parser.add_argument('-m', '--maxfiles', action='store', type=int, default=9999, dest='max_files', help="Set how many files to post per post (limited by however many the board allows)")
-parser.add_argument('-r', '--resume', action='store', type=int, default=0, dest='resume', help="Resume from a specific upload position, start = 0 (a value of \"0\" will start uploading from the 1st file in the sorted list, \"1\" from the 2nd and so on")
+parser.add_argument('-r', '--resume', action='store', type=int, default=0, dest='resume', help="Resume from a specific upload position, start = 0 (a value of \"0\" will start uploading from the 1st file in the sorted list, \"1\" from the 2nd and so on)")
 parser.add_argument('-v', '--version', action='version', version='%(prog)s 2016.09.26')
 
 results = parser.parse_args()
